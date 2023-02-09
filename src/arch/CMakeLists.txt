@@ -1,0 +1,5 @@
+if (${target_arch} STREQUAL rp2040)
+    add_subdirectory(rp2040)
+else () 
+    add_subdirectory(x86)
+endif ()

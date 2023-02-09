@@ -1,0 +1,10 @@
+.define mmc_interrupt_number 1
+
+.program mmc_clock 
+.side_set 1
+.wrap_target 
+    irq mmc_interrupt_number side 1 
+    irq clear mmc_interrupt_number side 0 
+.wrap 
+
+

@@ -52,13 +52,22 @@ include (external/pico_extras_import)
 pico_sdk_init()
 
 add_library(common_flags INTERFACE)
+add_library(common_flags_pico INTERFACE)
+
+target_compile_options(common_flags_pico
+    INTERFACE 
+    $<$<COMPILE_LANGUAGE:CXX>:-std=c++2a -Wfloat-equal -Wshadow -Wundef -Wpointer-arith -Wcast-align -Wconversion -Wall -fno-exceptions>
+    $<$<CONFIG:DEBUG>:-Og -g> 
+    $<$<CONFIG:RELEASE>:-Os>
+)
 
 target_compile_options(common_flags
     INTERFACE 
     $<$<COMPILE_LANGUAGE:CXX>:-std=c++2a -Wfloat-equal -Wshadow -Wundef -Wpointer-arith -Wcast-align -Wconversion -Wall
-    -Wpedantic -Wextra -fno-exceptions>
+    -Wpedantic -Wextra -Werror -fno-exceptions>
     $<$<CONFIG:DEBUG>:-Og -g> 
     $<$<CONFIG:RELEASE>:-Os>
 )
+
 
 add_subdirectory(src)

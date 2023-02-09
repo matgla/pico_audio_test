@@ -21,6 +21,37 @@
                 "update_submodules": true,
                 "is_cmake_library": true
             }
+        },
+        {
+            "name": "eul",
+            "link": "https://github.com/matgla/EmbeddedUtilityLibraries.git",
+            "type": "git",
+            "version": "master",
+            "directory": "eul",
+            "target": "eul",
+            "options": {
+                "cmake_variables": {
+                    "DISABLE_TESTS": "ON",
+                    "DISABLE_SANITIZERS": "ON"
+                }
+            }
+        },
+        {
+            "name": "fatfs",
+            "link": "https://github.com/abbrev/fatfs.git",
+            "type": "git",
+            "version": "master",
+            "directory": "fatfs",
+            "target": "fatfs",
+            "options": {
+                "create_library": {
+                    "type": "STATIC",
+                    "sources_filter": ["*.c", "*.h"],
+                    "include_directories": ["source"],
+                    "sources_directory": "source",
+                    "compile_definitions": "-DFF_FS_READONLY=1 -DFF_USE_MKFS=0 -DFF_USE_TRIM=0 -DFF_FS_REETRANT=0 -DFF_USE_LFN=0"
+                }
+            }
         }
     ]
 }
